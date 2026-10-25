@@ -6,4 +6,4 @@ Colección de write-ups de máquinas vulnerables resueltas en distintas platafor
 
 | Plataforma | Write-ups |
 |------------|-----------|
-| [DockerLabs](DockerLabs/README.md) | 2 |
+| [DockerLabs](DockerLabs/README.md) | 3 |
