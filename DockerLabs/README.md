@@ -7,6 +7,7 @@ Colección de write-ups de máquinas de la plataforma [DockerLabs](https://docke
 | Máquina       | Plataforma | Dificultad | SO    | Write-up                                        |
 | ------------- | ---------- | ---------- | ----- | ----------------------------------------------- |
 | ChocolateFire | DockerLabs | Media      | Linux | [ChocolateFire](ChocolateFire/ChocolateFire.md) |
+| DockerLabs    | DockerLabs | Fácil      | Linux | [DockerLabs](Dockerlabs/DockerLabs.md)          |
 | FirstHacking  | DockerLabs | Muy fácil  | Linux | [FirstHacking](FirstHacking/FirstHacking.md)    |
 | TProot        | DockerLabs | Muy fácil  | Linux | [TProot](TProot/TProot.md)                      |
 | Upload        | DockerLabs | Fácil      | Linux | [Upload](Upload/Upload.md)                      |
