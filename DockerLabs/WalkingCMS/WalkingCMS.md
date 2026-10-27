@@ -157,13 +157,13 @@ Con las credenciales `mario:love` se accede al panel de administración de WordP
 
 ![Instalación del plugin WP File Manager desde el panel de WordPress](images/11-plugin-file-manager.png)
 
-Se obtiene una *reverse shell* en PHP ([php-reverse-shell de pentestmonkey](https://github.com/pentestmonkey/php-reverse-shell)), configurando en el script la IP de la máquina atacante (`192.168.1.150`) y el puerto de escucha (`4444`).
+Se genera la *reverse shell* en PHP con [revshells.com](https://www.revshells.com/), eligiendo la plantilla **PHP PentestMonkey** ([php-reverse-shell](https://github.com/pentestmonkey/php-reverse-shell)) e indicando la IP de la máquina atacante (`192.168.1.150`) y el puerto de escucha (`4444`). Se copia el código generado con el botón *Copy*:
 
-<!-- TODO: falta la captura de la copia de la revshell (la nota la referenciaba como "Pasted image 20261027184107.png", pero no está en la carpeta images/). -->
+![Generación de la reverse shell PHP PentestMonkey en revshells.com con IP 192.168.1.150 y puerto 4444](images/12-revshells-php-pentestmonkey.png)
 
 Con el editor de WP File Manager se abre un fichero `.php` del WordPress (en este caso `wp-content/index.php`) y se **pega el código de la reverse shell**, guardando los cambios. Al ejecutarse, el script abre una conexión saliente hacia `192.168.1.150:4444` y redirige una shell (`/bin/sh`) a través de ella:
 
-![Edición de wp-content/index.php con WP File Manager pegando la reverse shell PHP](images/12-revshell-index-php.png)
+![Edición de wp-content/index.php con WP File Manager pegando la reverse shell PHP](images/13-revshell-index-php.png)
 
 Antes de disparar la shell, se deja un *listener* a la escucha en la máquina atacante con [netcat](https://netcat.sourceforge.net/), en el mismo puerto configurado en el payload (4444):
 
@@ -178,11 +178,11 @@ Parámetros de `nc`:
 - `-v`: salida detallada (verbose).
 - `-p 4444`: puerto en el que escuchar.
 
-![Listener de netcat a la escucha en el puerto 4444](images/13-netcat-listener.png)
+![Listener de netcat a la escucha en el puerto 4444](images/14-netcat-listener.png)
 
 El panel de información del plugin muestra la ruta del fichero editado (`wordpress/wp-content/index.php`), que se corresponde con la URL `http://172.17.0.2/wordpress/wp-content/index.php`:
 
-![Panel de WP File Manager mostrando la ruta del fichero index.php modificado](images/14-ruta-revshell.png)
+![Panel de WP File Manager mostrando la ruta del fichero index.php modificado](images/15-ruta-revshell.png)
 
 Al visitar esa URL en el navegador, Apache ejecuta el `index.php` modificado y se lanza la *reverse shell*. En el listener de netcat se recibe la conexión y se obtiene una shell como el usuario **www-data** (`uid=33`), el usuario con el que corre el servidor web:
 
@@ -191,7 +191,7 @@ whoami
 www-data
 ```
 
-![Reverse shell recibida en netcat, ejecutándose como el usuario www-data (uid=33)](images/15-shell-www-data.png)
+![Reverse shell recibida en netcat, ejecutándose como el usuario www-data (uid=33)](images/16-shell-www-data.png)
 
 ## Escalada de privilegios
 
@@ -249,7 +249,7 @@ whoami
 root
 ```
 
-![Escalada de privilegios abusando del SUID de /usr/bin/env y obtención de root](images/16-escalada-suid-env-root.png)
+![Escalada de privilegios abusando del SUID de /usr/bin/env y obtención de root](images/17-escalada-suid-env-root.png)
 
 La máquina queda totalmente comprometida.
 
@@ -269,6 +269,7 @@ La máquina queda totalmente comprometida.
 - [`gobuster`](https://github.com/OJ/gobuster) — descubrimiento de rutas y directorios web por diccionario.
 - [`wpscan`](https://github.com/wpscanteam/wpscan) — enumeración de usuarios/plugins y fuerza bruta de credenciales en WordPress.
 - [WP File Manager](https://wordpress.org/plugins/wp-file-manager/) — plugin usado para editar ficheros del servidor desde el panel.
+- [`revshells.com`](https://www.revshells.com/) — generación del payload de reverse shell.
 - [`php-reverse-shell` (pentestmonkey)](https://github.com/pentestmonkey/php-reverse-shell) — webshell PHP empleada como payload.
 - [`netcat`](https://netcat.sourceforge.net/) — listener para recibir la reverse shell.
 - [`env`](https://gtfobins.github.io/gtfobins/env/) — binario SUID abusado para la escalada de privilegios.
@@ -282,5 +283,6 @@ La máquina queda totalmente comprometida.
 - [Gobuster — GitHub](https://github.com/OJ/gobuster)
 - [SecLists — GitHub](https://github.com/danielmiessler/SecLists)
 - [pentestmonkey — php-reverse-shell](https://github.com/pentestmonkey/php-reverse-shell)
+- [revshells.com — Online Reverse Shell Generator](https://www.revshells.com/)
 - [WP File Manager — WordPress.org](https://wordpress.org/plugins/wp-file-manager/)
 - [Nmap Reference Guide](https://nmap.org/book/man.html)
