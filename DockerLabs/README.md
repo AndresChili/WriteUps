@@ -12,3 +12,4 @@ Colección de write-ups de máquinas de la plataforma [DockerLabs](https://docke
 | TProot        | DockerLabs | Muy fácil  | Linux | [TProot](TProot/TProot.md)                      |
 | Trust         | DockerLabs | Muy fácil  | Linux | [Trust](Trust/Trust.md)                         |
 | Upload        | DockerLabs | Fácil      | Linux | [Upload](Upload/Upload.md)                      |
+| WalkingCMS    | DockerLabs | Fácil      | Linux | [WalkingCMS](WalkingCMS/WalkingCMS.md)          |
