@@ -10,4 +10,5 @@ Colección de write-ups de máquinas de la plataforma [DockerLabs](https://docke
 | DockerLabs    | DockerLabs | Fácil      | Linux | [DockerLabs](Dockerlabs/DockerLabs.md)          |
 | FirstHacking  | DockerLabs | Muy fácil  | Linux | [FirstHacking](FirstHacking/FirstHacking.md)    |
 | TProot        | DockerLabs | Muy fácil  | Linux | [TProot](TProot/TProot.md)                      |
+| Trust         | DockerLabs | Muy fácil  | Linux | [Trust](Trust/Trust.md)                         |
 | Upload        | DockerLabs | Fácil      | Linux | [Upload](Upload/Upload.md)                      |
